@@ -86,8 +86,16 @@ export default function Home() {
             </nav>
 
             {/* Bandeira */}
-            <div className="hidden sm:flex items-center gap-2 text-white font-medium text-sm sm:text-base">
-              <span className="text-xl sm:text-2xl">🇧🇷</span>
+            <div className="hidden sm:flex items-center gap-1 text-white font-medium text-sm sm:text-base">
+              <span className="flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8">
+                <Image
+                  src="/icon-brasil.svg"
+                  alt="Bandeira do Brasil"
+                  width={24}
+                  height={24}
+                  className="inline-block"
+                />
+              </span>
               <span>BR</span>
             </div>
 
