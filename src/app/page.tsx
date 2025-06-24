@@ -2,13 +2,13 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Menu, Monitor, X } from 'lucide-react';
+import { BookOpenText, Flame, Menu, Monitor, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Home() {
-  const [selected, setSelected] = useState('adicionar');
+  const [selected, setSelected] = useState('inicio');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -56,32 +56,41 @@ export default function Home() {
 
             {/* Centro: Nav responsiva */}
             <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden sm:flex gap-4 md:gap-6 items-center text-sm">
-              <Link
-                href="/mixs"
-                className={`text-white bg-transparent hover:bg-transparent px-4 py-1 md:px-6 md:py-2 rounded-md cursor-pointer ${
-                  selected === 'adicionar' ? 'border-2 border-yellow-400' : ''
-                }`}
-                onClick={() => setSelected('adicionar')}
-              >
-                Mixs
-              </Link>
               <Button
                 variant="default"
-                className={`text-white bg-transparent hover:bg-transparent  px-4 md:px-6 cursor-pointer ${
-                  selected === 'promover' ? 'border-2 border-yellow-400' : ''
+                className={`text-white bg-transparent hover:bg-transparent px-4 md:px-6 cursor-pointer ${
+                  selected === 'inicio' ? 'border-2 border-yellow-400' : ''
                 }`}
-                onClick={() => setSelected('promover')}
+                onClick={() => setSelected('inicio')}
               >
-                Home
+                Inicio
               </Button>
               <Button
                 variant="default"
                 className={`text-white bg-transparent hover:bg-transparent px-4 md:px-6 cursor-pointer ${
-                  selected === 'entrar' ? 'border-2 border-yellow-400' : ''
+                  selected === 'mixs' ? 'border-2 border-yellow-400' : ''
                 }`}
-                onClick={() => setSelected('entrar')}
+                onClick={() => setSelected('mixs')}
               >
-                Entrar
+                Mixs
+              </Button>
+              <Button
+                variant="default"
+                className={`text-white bg-transparent hover:bg-transparent  px-4 md:px-6 cursor-pointer ${
+                  selected === 'rivals' ? 'border-2 border-yellow-400' : ''
+                }`}
+                onClick={() => setSelected('rivals')}
+              >
+                Rivals
+              </Button>
+              <Button
+                variant="default"
+                className={`text-white bg-transparent hover:bg-transparent px-4 md:px-6 cursor-pointer ${
+                  selected === 'blogs' ? 'border-2 border-yellow-400' : ''
+                }`}
+                onClick={() => setSelected('blogs')}
+              >
+                Blogs
               </Button>
             </nav>
 
@@ -112,39 +121,49 @@ export default function Home() {
           {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="sm:hidden bg-black/90 px-4 py-4 flex flex-col items-center gap-4 transition-all duration-300">
-              <Link
-                href="/mixs"
+              <button
                 className={`w-full text-center py-2 rounded-md ${
-                  selected === 'adicionar' ? 'border-2 border-yellow-400' : ''
+                  selected === 'inicio' ? 'border-2 border-yellow-400' : ''
                 }`}
                 onClick={() => {
-                  setSelected('adicionar');
+                  setSelected('inicio');
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Inicio
+              </button>
+              <button
+                className={`w-full text-center py-2 rounded-md ${
+                  selected === 'mixs' ? 'border-2 border-yellow-400' : ''
+                }`}
+                onClick={() => {
+                  setSelected('mixs');
                   setMobileMenuOpen(false);
                 }}
               >
                 Mixs
-              </Link>
-              <button
-                className={`w-full text-center py-2 rounded-md ${
-                  selected === 'promover' ? 'border-2 border-yellow-400' : ''
-                }`}
-                onClick={() => {
-                  setSelected('promover');
-                  setMobileMenuOpen(false);
-                }}
-              >
-                Home
               </button>
               <button
                 className={`w-full text-center py-2 rounded-md ${
-                  selected === 'entrar' ? 'border-2 border-yellow-400' : ''
+                  selected === 'rivals' ? 'border-2 border-yellow-400' : ''
                 }`}
                 onClick={() => {
-                  setSelected('entrar');
+                  setSelected('rivals');
                   setMobileMenuOpen(false);
                 }}
               >
-                Entrar
+                Rivals
+              </button>
+              <button
+                className={`w-full text-center py-2 rounded-md ${
+                  selected === 'blogs' ? 'border-2 border-yellow-400' : ''
+                }`}
+                onClick={() => {
+                  setSelected('blogs');
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Blogs
               </button>
             </div>
           )}
@@ -152,22 +171,81 @@ export default function Home() {
 
         {/* Main Section */}
         <section className="mt-12 sm:mt-16 flex flex-col lg:flex-row justify-between items-center gap-12">
-          {/* Left Content */}
           <div className="flex-1 max-w-xl space-y-6 text-center sm:text-left px-4 sm:px-0">
-            <Badge
-              variant="outline"
-              className="text-yellow-400 border-yellow-400 px-3 py-1 inline-flex items-center gap-2"
-            >
-              <Monitor size={16} />
-              MONITORAMENTO DE SERVIDORES
-            </Badge>
+            {selected === 'inicio' && (
+              <>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                  Bem-vindo ao Ducks Gaming!
+                </h2>
+                <p className="text-gray-300 text-base leading-relaxed">
+                  A plataforma definitiva para jogadores competitivos de CS2.
+                  Conecte-se com outros jogadores, participe de mixs, desafie
+                  rivais e fique por dentro das últimas notícias do cenário.
+                </p>
+              </>
+            )}
+            {selected === 'mixs' && (
+              <>
+                <Badge
+                  variant="outline"
+                  className="text-yellow-400 border-yellow-400 px-3 py-1 inline-flex items-center gap-2"
+                >
+                  <Monitor size={16} />
+                  MIXS
+                </Badge>
 
-            <p className="bg-yellow-800/20 p-4 rounded-xl border border-yellow-400/40 text-gray-100 text-base leading-relaxed">
-              Acompanhe em tempo real os melhores servidores dos seus jogos
-              favoritos.
-              <br />
-              DucksGaming traz a performance que você precisa.
-            </p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                  Sorteie Mixs Balanceados com Facilidade
+                </h2>
+
+                <p className="bg-yellow-800/20 p-4 rounded-xl border border-yellow-400/40 text-gray-100 text-base leading-relaxed">
+                  Monte partidas equilibradas com base no nível dos jogadores e
+                  funções específicas. Ideal para treinos, scrims ou diversão
+                  com amigos.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  <Link
+                    href="/mixs"
+                    className="inline-flex items-center justify-center bg-yellow-400 hover:bg-yellow-300 text-black font-bold px-6 py-3 rounded-xl shadow-md transition-all duration-300"
+                  >
+                    Ir para o Sorteador de Mixs
+                  </Link>
+                </div>
+              </>
+            )}
+
+            {selected === 'rivals' && (
+              <>
+                <Badge
+                  variant="outline"
+                  className="text-blue-400 border-blue-400 px-3 py-1 inline-flex items-center gap-2"
+                >
+                  <Flame size={16} />
+                  RIVALS
+                </Badge>
+                <p className="bg-blue-800/20 p-4 rounded-xl border border-blue-400/40 text-gray-100 text-base leading-relaxed">
+                  Crie ou desafie outros times da comunidade e mostre seu poder
+                  em campo. Ranking ao vivo e estatísticas completas.
+                </p>
+              </>
+            )}
+
+            {selected === 'blogs' && (
+              <>
+                <Badge
+                  variant="outline"
+                  className="text-green-400 border-green-400 px-3 py-1 inline-flex items-center gap-2"
+                >
+                  <BookOpenText size={16} />
+                  BLOGS
+                </Badge>
+                <p className="bg-green-800/20 p-4 rounded-xl border border-green-400/40 text-gray-100 text-base leading-relaxed">
+                  Fique por dentro das últimas notícias do cenário competitivo,
+                  análises de partidas, entrevistas e muito mais.
+                </p>
+              </>
+            )}
           </div>
         </section>
       </div>
