@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ducksgaming.site
+    container_name: ducks_web
     ports:
       - '4040:4040'
     restart: unless-stopped
